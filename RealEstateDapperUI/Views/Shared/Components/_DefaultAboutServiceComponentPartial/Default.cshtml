@@ -1,0 +1,9 @@
+﻿@model List<RealEstateDapperUI.Dtos.AboutDetailDtos.ResultServicesDto>
+
+<ul class="w3l-right-book w3l-right-book-grid mt-md-5 mt-4">
+    @foreach(var item in Model)
+    {
+        <li><span class="fa fa-check" aria-hidden="true"></span>@item.Name</li>
+    }
+</ul>
+<a href="#services" class="btn btn-style btn-primary mt-4">Discover our services</a>

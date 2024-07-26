@@ -19,7 +19,7 @@ namespace RealEstateDapperApi.Controllers
         [HttpGet]
         public async Task<IActionResult> CategoryResult()
         {
-            var values = await _categoryRepository.GetAllCategorySync();
+            var values = await _categoryRepository.GetAllCategoryAsync();
             return Ok(values);
         }
 
