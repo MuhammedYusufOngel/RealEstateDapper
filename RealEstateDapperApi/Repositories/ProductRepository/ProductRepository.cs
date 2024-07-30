@@ -15,7 +15,7 @@ namespace RealEstateDapperApi.Repositories.ProductRepository
 
         public async void CreateProduct(CreateProductDto createProductDto)
         {
-            string query = "insert into Product (Title, Price, CoverImage, City, District, Address, Description, ProductCategory, EmployeeId, Type) values (@Title, @Price, @CoverImage, @City, @District, @Address, @Description, @ProductCategory, @EmployeeId, @Type)";
+            string query = "insert into Product (Title, Price, CoverImage, City, District, Address, Description, ProductCategory, EmployeeId, Type, DealOfTheDay) values (@Title, @Price, @CoverImage, @City, @District, @Address, @Description, @ProductCategory, @EmployeeId, @Type, @DealOfTheDay)";
             var parameters = new DynamicParameters();
             parameters.Add("@Title", createProductDto.Title);
             parameters.Add("@Price", createProductDto.Price);
@@ -27,6 +27,7 @@ namespace RealEstateDapperApi.Repositories.ProductRepository
             parameters.Add("@ProductCategory", createProductDto.ProductCategory);
             parameters.Add("@EmployeeId", createProductDto.EmployeeId);
             parameters.Add("@Type", createProductDto.Type);
+            parameters.Add("@DealOfTheDay", createProductDto.DealOfTheDay);
             using (var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);
@@ -45,11 +46,33 @@ namespace RealEstateDapperApi.Repositories.ProductRepository
 
         public async Task<List<ResultProductWithCategoryDto>> GetAllProductWithAsync()
         {
-            string query = "Select ProductId, Title, Price, CoverImage, City, District, Address, Type, Description, CategoryName from Product inner join Category on Category.CategoryId = Product.ProductCategory";
+            string query = "Select ProductId, Title, Price, CoverImage, City, District, Address, Type, Description, CategoryName, DealOfTheDay from Product inner join Category on Category.CategoryId = Product.ProductCategory";
             using (var con = _context.CreateConnection())
             {
                 var values = await con.QueryAsync<ResultProductWithCategoryDto>(query);
                 return values.ToList();
+            }
+        }
+
+        public async void ProductDealOfTheDayStatusChangeToFalse(int id)
+        {
+            string query = "Update Product set DealOfTheDay=0 where ProductId=@ProductId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@ProductId", id);
+            using (var con = _context.CreateConnection())
+            {
+                await con.ExecuteAsync(query, parameters);
+            }
+        }
+
+        public async void ProductDealOfTheDayStatusChangeToTrue(int id)
+        {
+            string query = "Update Product set DealOfTheDay=1 where ProductId=@ProductId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@ProductId", id);
+            using (var con = _context.CreateConnection())
+            {
+                await con.ExecuteAsync(query, parameters);
             }
         }
     }

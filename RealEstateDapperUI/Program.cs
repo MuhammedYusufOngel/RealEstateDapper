@@ -23,6 +23,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=BottomGrid}/{action=Index}/{id?}");
+    pattern: "{controller=PopularLocation}/{action=Index}/{id?}");
 
 app.Run();

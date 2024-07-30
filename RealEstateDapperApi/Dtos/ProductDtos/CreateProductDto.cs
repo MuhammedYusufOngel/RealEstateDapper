@@ -12,5 +12,6 @@
         public int ProductCategory { get; set; }
         public int EmployeeId { get; set; }
         public string Type { get; set; }
+        public bool DealOfTheDay { get; set; }
     }
 }

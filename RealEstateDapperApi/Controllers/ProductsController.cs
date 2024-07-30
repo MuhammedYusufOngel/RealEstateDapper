@@ -30,5 +30,19 @@ namespace RealEstateDapperApi.Controllers
             _productRepository.CreateProduct(createProductDto);
             return Ok("Kategori başarılı şekilde eklendi");
         }
+
+        [HttpGet("ProductDealOfTheDayChangeToTrue/{id}")]
+        public async Task<IActionResult> ProductDealOfTheDayChangeToTrue(int id)
+        {
+            _productRepository.ProductDealOfTheDayStatusChangeToTrue(id);
+            return Ok("👍");
+        }
+
+        [HttpGet("ProductDealOfTheDayChangeToFalse/{id}")]
+        public async Task<IActionResult> ProductDealOfTheDayChangeToFalse(int id)
+        {
+            _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
+            return Ok("👍");
+        }
     }
 }

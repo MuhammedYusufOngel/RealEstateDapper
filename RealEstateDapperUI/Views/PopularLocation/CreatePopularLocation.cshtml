@@ -1,0 +1,25 @@
+﻿@using RealEstateDapperUI.Dtos.PopularLocationDtos
+@model CreatePopularLocationDto
+
+@{
+    ViewData["Title"] = "CreatePopularLocation";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Yeni Yer Ekle</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">İsim</label>
+        <input type="text" class="form-control" asp-for="Name"
+            aria-describedby="Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="ImageUrl" class="form-label">Resim Url</label>
+        <input type="text" class="form-control" asp-for="ImageUrl"
+            aria-describedby="ImageUrl">
+    </div>
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>

@@ -17,6 +17,7 @@
                 <th scope="col">Kategori</th>
                 <th scope="col">Sil</th>
                 <th scope="col">Düzenle</th>
+                <th scope="col">Günün Fırsatı</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,16 @@
                     <td>@item.CategoryName</td>
                     <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-danger">Sil</a></td>
                     <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
+                    <td>
+                        @if(@item.DealOfTheDay == false)
+                        {
+                            <a href="/Product/GetActive/@item.ProductId" class="btn btn-outline-success">Aktif Yap</a>
+                        }
+                        @if(@item.DealOfTheDay == true)
+                        {
+                            <a href="/Product/GetPassive/@item.ProductId" class="btn btn-outline-danger">Pasif Yap</a>
+                        }
+                    </td>
                 </tr>
             }
 
