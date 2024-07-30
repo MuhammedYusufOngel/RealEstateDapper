@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateDapperApi.Dtos.ProductDtos;
 using RealEstateDapperApi.Repositories.CategoryRepository;
 using RealEstateDapperApi.Repositories.ProductRepository;
 
@@ -21,6 +22,13 @@ namespace RealEstateDapperApi.Controllers
         {
             var values = await _productRepository.GetAllProductWithAsync();
             return Ok(values);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
+        {
+            _productRepository.CreateProduct(createProductDto);
+            return Ok("Kategori başarılı şekilde eklendi");
         }
     }
 }

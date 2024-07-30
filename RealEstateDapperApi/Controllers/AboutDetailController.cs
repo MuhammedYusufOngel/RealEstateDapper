@@ -30,7 +30,7 @@ namespace RealEstateDapperApi.Controllers
             return Ok("Kategori başarılı şekilde eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAboutDetail(int id)
         {
             _aboutDetailRepository.DeleteAboutDetail(id);

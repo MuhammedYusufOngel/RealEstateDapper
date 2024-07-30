@@ -1,0 +1,48 @@
+﻿@model RealEstateDapperUI.Dtos.EmployeeDtos.UpdateEmployeeDto
+
+@{
+    ViewData["Title"] = "UpdateEmployee";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Çalışan Bilgileri Güncelleme</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="EmployeeId" class="form-label">Çalışan Id</label>
+        <input type="text" class="form-control" asp-for="EmployeeId"
+            aria-describedby="EmployeeId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="Name" class="form-label">Adı</label>
+        <input type="text" class="form-control" asp-for="Name"
+            aria-describedby="Name">
+    </div>
+    <div class="mb-3">
+        <label for="Title" class="form-label">İşi</label>
+        <input type="text" class="form-control" asp-for="Title"
+            aria-describedby="Title">
+    </div>
+    <div class="mb-3">
+        <label for="Mail" class="form-label">Mail</label>
+        <input type="text" class="form-control" asp-for="Mail"
+            aria-describedby="Mail">
+    </div>
+    <div class="mb-3">
+        <label for="PhoneNumber" class="form-label">Telefon</label>
+        <input type="text" class="form-control" asp-for="PhoneNumber"
+            aria-describedby="PhoneNumber">
+    </div>
+    <div class="mb-3">
+        <label for="ImageUrl" class="form-label">Fotoğraf</label>
+        <input type="text" class="form-control" asp-for="ImageUrl"
+            aria-describedby="ImageUrl">
+    </div>
+    <div class="mb-3">
+        <label for="Status" class="form-label">Durumu</label>
+        <input type="text" class="form-control" asp-for="Status"
+            aria-describedby="Status">
+    </div>
+    <button class="btn btn-primary">Çalışan Bilgilerini Kaydet</button>
+</form>
+

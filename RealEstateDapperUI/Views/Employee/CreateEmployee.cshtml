@@ -1,0 +1,41 @@
+﻿@model RealEstateDapperUI.Dtos.EmployeeDtos.CreateEmployeeDto
+
+@{
+    ViewData["Title"] = "CreateEmployee";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>Çalışan Ekleme Sayfası</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Adı</label>
+        <input type="text" class="form-control" asp-for="Name"
+            aria-describedby="Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="Title" class="form-label">İşi</label>
+        <input type="text" class="form-control" asp-for="Title"
+            aria-describedby="Title">
+    </div>
+
+    <div class="mb-3">
+        <label for="Mail" class="form-label">Mail</label>
+        <input type="mail" class="form-control" asp-for="Mail"
+            aria-describedby="Mail">
+    </div>
+
+    <div class="mb-3">
+        <label for="PhoneNumber" class="form-label">Telefon</label>
+        <input type="tel" class="form-control" asp-for="PhoneNumber"
+            aria-describedby="PhoneNumber">
+    </div>
+
+    <div class="mb-3">
+        <label for="ImageUrl" class="form-label">Fotoğraf</label>
+        <input type="text" class="form-control" asp-for="ImageUrl"
+            aria-describedby="ImageUrl">
+    </div>
+    <button class="btn btn-primary">Çalışanı Kaydet</button>
+</form>
+

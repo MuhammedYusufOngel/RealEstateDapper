@@ -6,5 +6,6 @@ namespace RealEstateDapperApi.Repositories.ProductRepository
     {
         Task<List<ResultProductDto>> GetAllProductAsync();
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithAsync();
+        void CreateProduct(CreateProductDto createProductDto);
     }
 }

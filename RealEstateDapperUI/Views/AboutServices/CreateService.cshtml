@@ -1,0 +1,17 @@
+﻿@model RealEstateDapperUI.Dtos.AboutDetailDtos.CreateServicesDto
+
+@{
+    ViewData["Title"] = "CreateService";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Yeni Servis Ekle</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="Name"
+            aria-describedby="Name">
+    </div>
+    <button class="btn btn-primary">Kaydet</button>
+</form>

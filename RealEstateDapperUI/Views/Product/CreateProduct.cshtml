@@ -1,0 +1,71 @@
+﻿@model RealEstateDapperUI.Dtos.ProductDtos.CreateProductDto
+
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Yeni Ürün Ekleme</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Title" class="form-label">Ürün Başlığı</label>
+        <input type="text" class="form-control" asp-for="Title"
+            aria-describedby="Title">
+    </div>
+
+    <div class="mb-3">
+        <label for="Price" class="form-label">Ürünün Fiyatı</label>
+        <input type="text" class="form-control" asp-for="Price"
+            aria-describedby="Price">
+    </div>
+
+    <div class="mb-3">
+        <label for="CoverImage" class="form-label">Ürünün Görüntüsü</label>
+        <input type="text" class="form-control" asp-for="CoverImage"
+            aria-describedby="CoverImage">
+    </div>
+
+    <div class="mb-3">
+        <label for="City" class="form-label">Bulunduğu Şehir</label>
+        <input type="text" class="form-control" asp-for="City"
+            aria-describedby="City">
+    </div>
+
+    <div class="mb-3">
+        <label for="District" class="form-label">Bulunduğu Muhit</label>
+        <input type="text" class="form-control" asp-for="District"
+            aria-describedby="Title">
+    </div>
+
+    <div class="mb-3">
+        <label for="Address" class="form-label">Adresi</label>
+        <input type="text" class="form-control" asp-for="Address"
+            aria-describedby="Address">
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        <input type="text" class="form-control" asp-for="Description"
+            aria-describedby="Description">
+    </div>
+
+    <div class="mb-3">
+        <label for="Type" class="form-label">Tipi</label>
+        <input type="text" class="form-control" asp-for="Type"
+            aria-describedby="Type">
+    </div>
+
+    <div class="mb-3">
+        <label for="ProductCategory" class="form-label">Kategori</label>
+        @Html.DropDownListFor(x => x.ProductCategory, (List<SelectListItem>)ViewBag.v, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="EmployeeId" class="form-label">Çalışan</label>
+        @Html.DropDownListFor(x => x.EmployeeId, (List<SelectListItem>)ViewBag.e, new {@class="form-control"})
+    </div>
+    <button class="btn btn-primary">Ürünü Kaydet</button>
+</form>
+
+

@@ -1,0 +1,33 @@
+﻿@model RealEstateDapperUI.Dtos.AboutDetailDtos.CreateAboutDetailDto
+
+@{
+    ViewData["Title"] = "CreateAboutDetail";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Biz Kimiz Ekleme Sayfası</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="Title"
+            aria-describedby="Title">
+    </div>
+
+    <div class="mb-3">
+        <label for="Subtitle" class="form-label">Alt Başlık</label>
+        <input type="text" class="form-control" asp-for="Subtitle"
+            aria-describedby="Subtitle">
+    </div>
+
+    <div class="mb-3">
+        <label for="Description1" class="form-label">Açıklama 1</label>
+        <textarea rows="5" asp-for="Description1" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="Description2" class="form-label">Açıklama 2</label>
+        <textarea rows="5" asp-for="Description2" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Kaydet</button>
+</form>

@@ -1,0 +1,29 @@
+﻿@model RealEstateDapperUI.Dtos.AboutDetailDtos.UpdateServicesDto
+
+@{
+    ViewData["Title"] = "UpdateService";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>UpdateService</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="ServiceId" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="ServiceId"
+            aria-describedby="ServiceId" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="Name"
+            aria-describedby="Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="Status" class="form-label">Alt Başlık</label>
+        <input type="text" class="form-control" asp-for="Status"
+            aria-describedby="Status">
+    </div>
+    <button class="btn btn-primary">Kaydet</button>
+</form>

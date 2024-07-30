@@ -1,0 +1,37 @@
+﻿@using RealEstateDapperUI.Dtos.BottomGridDtos
+@model UpdateBottomGridDto
+
+@{
+    ViewData["Title"] = "UpdateBottomGrid";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Alt Grid Element Güncelleme Sayfası</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="BottomGridId" class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="BottomGridId"
+            aria-describedby="BottomGridId" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="Title"
+            aria-describedby="Title">
+    </div>
+
+    <div class="mb-3">
+        <label for="Icon" class="form-label">İkon</label>
+        <input type="text" class="form-control" asp-for="Icon"
+            aria-describedby="Icon">
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Kaydet</button>
+</form>
+

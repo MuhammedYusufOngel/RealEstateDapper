@@ -1,0 +1,39 @@
+﻿@using RealEstateDapperUI.Dtos.ProductDtos
+@model List<ResultProductDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<div class="bg-light rounded h-100 p-4">
+    <h1>Ürünler Sayfası</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Düzenle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ProductId</th>
+                    <td>@item.Title</td>
+                    <td>@item.Price</td>
+                    <td>@item.CategoryName</td>
+                    <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+<br />
+<a href="/Product/CreateProduct" class="btn btn-primary">Yeni Ürün Ekle</a>
