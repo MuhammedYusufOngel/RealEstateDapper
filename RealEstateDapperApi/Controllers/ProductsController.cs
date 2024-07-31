@@ -44,5 +44,12 @@ namespace RealEstateDapperApi.Controllers
             _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
             return Ok("👍");
         }
+
+        [HttpGet("GetLast5Products")]
+        public async Task<IActionResult> GetLast5Products()
+        {
+            var values = await _productRepository.GetLast5ProductAsync();
+            return Ok(values);
+        }
     }
 }

@@ -1,0 +1,43 @@
+﻿@using RealEstateDapperUI.Dtos.ProductDtos
+@model List<ResultProductDto>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Son 5 İlan</h6>
+            <a href="/Product/Index">Hepsini Göster</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Şehir</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Tipi</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col">Detaylar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ProductId</td>
+                            <td>@item.Title</td>
+                            <td>@item.District-@item.City</td>
+                            <td>@item.Price</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Type</td>
+                            <td>@item.Date.ToLongDateString()</td>
+                            <td><a class="btn btn-sm btn-primary" href="">Detaylar</a></td>
+                        </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

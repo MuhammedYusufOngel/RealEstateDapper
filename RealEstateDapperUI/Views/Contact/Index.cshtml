@@ -1,0 +1,63 @@
+﻿@model RealEstateDapperUI.Dtos.ContactDtos.CreateContactDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+
+<section class="w3l-contact-7 pt-5" id="contact">
+    <div class="contacts-9 pt-lg-5 pt-md-4">
+        <div class="container">
+            <div class="top-map">
+                <div class="row map-content-9">
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <h5 class="mb-2">Bize Ulaşın</h5>
+                            <p class="mb-4">Mail adresiniz kimseyle paylaşılmayacaktır. * işaretli yerler doldurmanız gereken alanlardır.</p>
+                            
+                            <form method="post" class="">
+                                <div class="form-grid">
+                                    <div class="input-field">
+                                        <input type="text" name="Name" asp-for="Name" placeholder="İsminiz"
+                                            required="">
+                                    </div>
+                                    <div class="input-field">
+                                        <input type="email" name="Email" asp-for="Email" placeholder="Email"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="input-field mt-4">
+                                    <input name="Subject" asp-for="Subject" placeholder="Konu"/>
+                                </div>
+                                <div class="input-field mt-4">
+                                    <textarea name="Message" asp-for="Message" placeholder="Mesajınız..."></textarea>
+                                </div>
+
+                                <button class="btn btn-primary btn-style mt-3">Submit</button>
+                            </form>
+                        
+                        </div>
+                    </div>
+                    <div class="col-lg-4 cont-details">
+                        <address>
+                            <h5 class="">Adresimiz</h5>
+                            <p><span class="fa fa-map-marker"></span>29 Ekim Mah. </p>
+
+                            <h5 class="mt-4 pt-lg-3">Telefon</h5>
+                            <p><span class="fa fa-phone"></span> <strong>Tel :</strong>
+                                <a href="tel:+1(12) 366 411 4999"> +90 479 142 32 65</a></p>
+
+                            <p> <span class="fa fa-envelope"></span> <strong>Email :</strong>
+                                <a href="mailto:crazyboy_aykutfit@gmail.com"> crazyboy_aykutfit@gmail.com</a></p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map mt-5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195884.7199739243!2d32.76276475!3d39.903376550000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d347d520732db1%3A0xbdc57b0c0842b8d!2sAnkara!5e0!3m2!1sen!2str!4v1722424484186!5m2!1sen!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+

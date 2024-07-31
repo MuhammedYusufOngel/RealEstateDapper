@@ -15,6 +15,7 @@
                 <th scope="col">Ürün Adı</th>
                 <th scope="col">Fiyat</th>
                 <th scope="col">Kategori</th>
+                <th scope="col">Yayınlanma Tarihi</th>
                 <th scope="col">Sil</th>
                 <th scope="col">Düzenle</th>
                 <th scope="col">Günün Fırsatı</th>
@@ -28,6 +29,7 @@
                     <td>@item.Title</td>
                     <td>@item.Price</td>
                     <td>@item.CategoryName</td>
+                    <td>@item.Date.ToLongDateString()</td>
                     <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-danger">Sil</a></td>
                     <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
                     <td>

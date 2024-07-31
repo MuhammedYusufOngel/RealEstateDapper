@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+
+<!-- Sale & Revenue Start -->
+    @await Component.InvokeAsync("_DashboardStatisticsComponentPartial")
+<!-- Sale & Revenue End -->
+
+<!-- Sales Chart Start -->
+    @await Component.InvokeAsync("_DashboardChartComponentPartial")
+<!-- Sales Chart End -->
+
+<!-- Recent Sales Start -->
+    @await Component.InvokeAsync("_DashboardRecentSalesComponentPartial")
+<!-- Recent Sales End -->
+
+<!-- Widgets Start -->
+    @await Component.InvokeAsync("_DashboardWidgetsComponentPartial")
+<!-- Widgets End -->
