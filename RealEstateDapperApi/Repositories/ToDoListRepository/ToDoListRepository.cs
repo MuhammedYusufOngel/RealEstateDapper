@@ -36,18 +36,6 @@ namespace RealEstateDapperApi.Repositories.ToDoListRepository
             }
         }
 
-        public async Task<GetByIdToDoListDto> GetToDo(int id)
-        {
-            string query = "Select *from ToDoList where ToDoListId=@ToDoListId";
-            var parameter = new DynamicParameters();
-            parameter.Add("@ToDoListId", id);
-            using (var con = _context.CreateConnection())
-            {
-                var values = await con.QueryFirstOrDefaultAsync<GetByIdToDoListDto>(query, parameter);
-                return values;
-            }
-        }
-
         public async Task<List<ResultToDoListDto>> GetToDoListAsync()
         {
             string query = "Select *from ToDoList";
