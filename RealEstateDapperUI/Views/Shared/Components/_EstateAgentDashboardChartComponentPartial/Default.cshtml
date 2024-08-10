@@ -6,7 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <body>
 
-    <canvas id="myChart" style="width:100%;max-width:500px"></canvas>
+    <canvas id="myChart" style="width: 100%;"></canvas>
 
 
     @{
@@ -21,30 +21,30 @@
 
         yValues.Add(0);
 
-        <script>
+                <script>
 
-            const xValues = @Html.Raw(Json.Serialize(xValues));
-            const yValues = @Html.Raw(Json.Serialize(yValues));
-            const barColors = ["red", "green","blue","orange","brown"];
+                    const xValues = @Html.Raw(Json.Serialize(xValues));
+                    const yValues = @Html.Raw(Json.Serialize(yValues));
+                    const barColors = ["red", "green","blue","orange","brown"];
 
-            new Chart("myChart", {
-                type: "bar",
-                data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-                },
-                options: {
-                legend: {display: false},
-                title: {
-                    display: true,
-                    text: "Şehir - İlan İstatistiği"
-                }
-                }
-            });
-        </script>
+                    new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                        },
+                        options: {
+                        legend: {display: false},
+                        title: {
+                            display: true,
+                            text: "Şehir - İlan İstatistiği"
+                        }
+                        }
+                        });
+                </script>
 
     }
 

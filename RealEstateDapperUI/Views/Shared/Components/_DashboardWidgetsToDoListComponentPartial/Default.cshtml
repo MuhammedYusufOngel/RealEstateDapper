@@ -1,46 +1,131 @@
-﻿@using RealEstateDapperUI.Dtos.ToDoListDtos
-@model List<ResultToDoListDto>
-
-<div class="col-sm-12 col-md-6 col-xl-4">
+﻿<div class="col-sm-12 col-md-6 col-xl-6">
     <div class="h-100 bg-light rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Yapılacaklar Listesi</h6>
-            <a href="">Hepsini Göster</a>
-        </div>
-        <div class="d-flex mb-2">
-            <input class="form-control bg-transparent" type="text" placeholder="Enter task">
-            <button type="button" class="btn btn-primary ms-2">Add</button>
         </div>
 
-        @foreach(var item in Model)
-        {
-                @if (item.Status)
-                {
-                    <div class="d-flex align-items-center border-bottom py-2">
-                        <input class="form-check-input m-0" type="checkbox">
-                        <div class="w-100 ms-3">
-                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <span>@item.Description</span>
-                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                else
-                {
-                    <div class="d-flex align-items-center border-bottom py-2">
-                        <input class="form-check-input m-0" type="checkbox" checked>
-                        <div class="w-100 ms-3">
-                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                    <span><del>@item.Description</del></span>
-                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                }
-        }
-
+        <form id="ToDoListForm">
+            <div class="d-flex mb-2">
+                <input type="text" id="description" class="form-control bg-transparent" placeholder="Görev ekleyin" />
+                <button type="submit" class="btn btn-primary ms-2">Ekle</button>
+            </div>
+        </form>
         
+        <div>
+
+        </div>
+        <div id="ToDoLists"></div>
+
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    loadToDoList();
+
+    // Load products
+    function loadToDoList() {
+        $.ajax({
+            url: "https://localhost:7195/api/ToDoLists",
+            type: "GET",
+            success: function(ToDoLists) {
+                var datas = '';
+                $.each(ToDoLists, function(i, item) {
+
+                    if(item.status)
+                    {
+                        datas +=   `<div class="d-flex align-items-center border-bottom py-2">
+                                        <form id="formName">
+                                            <input class="form-check-input m-0" onChange="document.getElementById('formName').submit()" type="checkbox" onclick="DidntIt(${item.toDoListId})">
+                                        </form>
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                                <span>${item.description}</span>
+                                            <button class="btn btn-sm" onclick="deleteProduct(${item.toDoListId})"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    }
+                    else
+                    {
+                        datas +=   `<div class="d-flex align-items-center border-bottom py-2">
+                                        <form id="formName">
+                                            <input class="form-check-input m-0" onChange="document.getElementById('formName').submit()" type="checkbox" onclick="DidIt(${item.toDoListId})" checked>
+                                        </form>
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                                <span><del>${item.description}</del></span>
+                                            <button class="btn btn-sm" onclick="deleteToDoList(${item.toDoListId})"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                    }
+                    
+                });
+                $('#ToDoLists').html(datas);
+            }
+        });
+    }
+
+    $('#ToDoListForm').submit(function(event) {
+        event.preventDefault();
+        var description = $('#description').val();
+
+        // Add product
+        $.ajax({
+            url: "https://localhost:7195/api/ToDoLists",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ description: description, status: true }),
+            success: function() {
+                resetForm();
+                loadToDoList();
+            }
+        });
+    });
+
+
+    window.DidIt = function(id) {
+        $.ajax({
+            url: `https://localhost:7195/api/ToDoLists/UpdateToDoStatusTrue?id=${id}`,
+            type: "GET",
+            success: function() {
+                resetForm();
+                loadToDoList(); 
+            }
+        });
+    };
+
+
+    window.DidntIt = function(id) {
+        $.ajax({
+            url: `https://localhost:7195/api/ToDoLists/UpdateToDoStatusFalse?id=${id}`,
+            type: "GET",
+            success: function() {
+                resetForm();
+                loadToDoList(); 
+            }
+        });
+    };
+    // Delete todolist
+
+    window.deleteToDoList = function(id) {
+        if (confirm('Silmek istediğinize emin misiniz?')) {
+            $.ajax({
+                url: `https://localhost:7195/api/ToDoLists/${id}`,
+                type: "DELETE",
+                success: function() {
+                    resetForm();
+                    loadToDoList();
+                }
+            });
+        }
+    };
+
+    function resetForm() {
+        $('#description').val('');
+    }
+});
+</script>

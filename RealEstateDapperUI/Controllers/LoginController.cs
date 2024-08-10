@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RealEstateDapperUI.Dtos.LoginDtos;
 using RealEstateDapperUI.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,20 +26,21 @@ namespace RealEstateDapperUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateLoginDto createLoginDto)
+        public async Task<IActionResult> Index(string username, string password)
         {
             var client = _httpClientFactory.CreateClient();
-            StringContent content = new StringContent(JsonSerializer.Serialize(createLoginDto), System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7195/api/Login", content);
+            var responseMessage = await client.GetAsync("https://localhost:7195/api/Login/SignIn?username=" + username + "&password=" + password);
             if (responseMessage.IsSuccessStatusCode)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var tokenModel = JsonSerializer.Deserialize<JwtResponseModel>(jsonData, new JsonSerializerOptions
+                string jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<ResultLoginDto>(jsonData);
+
+                var tokenModel = System.Text.Json.JsonSerializer.Deserialize<JwtResponseModel>(jsonData, new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
 
-                if(tokenModel != null)
+                if (tokenModel != null)
                 {
                     JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
                     var token = handler.ReadJwtToken(tokenModel.Token);
@@ -55,14 +57,22 @@ namespace RealEstateDapperUI.Controllers
                         };
 
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
-                        return RedirectToAction("Index", "Employee");
-                    }
 
+                        if(values.UserRole == "1")
+                            return RedirectToAction("Index", "Dashboard");
+                        else
+                            return RedirectToAction("Index", "Dashboard", new { area = "EstateAgent" });
+                    }
                     return View();
                 }
-                return View();
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
         }
     }
 }

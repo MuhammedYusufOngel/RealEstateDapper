@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Kolaylıklar Sayfası";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2>@ViewBag.name</h2>
+<h4>@ViewBag.district, @ViewBag.city</h4>
+
+<div id="Amenities"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    loadAmenities();
+
+    function loadAmenities() {
+        $.ajax({
+            url: `https://localhost:7195/api/Amenities/GetAmenitiesByProductId?id=${@ViewBag.id}`,
+            type: "GET",
+            success: function(amenities) {
+                var datas = '';
+                $.each(amenities, function(i, item) {
+                    if(item.status)
+                    {
+                        datas +=   `<div class="d-flex align-items-center border-bottom py-2">
+                                    <form id="formName">
+                                        <input class="form-check-input m-0" onChange="document.getElementById('formName').submit()" type="checkbox" onclick="DontExist(${item.amenityId})" checked>
+                                    </form>
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 align-items-center justify-content-between">
+                                            <span>${item.amenityTitle}</span>
+                                        </div>
+                                    </div>
+                                </div>`;
+                    }
+                    else
+                    {
+                        datas +=   `<div class="d-flex align-items-center border-bottom py-2">
+                                    <form id="formName">
+                                        <input class="form-check-input m-0" onChange="document.getElementById('formName').submit()" type="checkbox" onclick="Exist(${item.amenityId})">
+                                    </form>
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 align-items-center justify-content-between">
+                                            <span>${item.amenityTitle}</span>
+                                        </div>
+                                    </div>
+                                </div>`;
+                    }
+                    
+
+                });
+                $('#Amenities').html(datas);
+            }
+        });
+    }
+
+    window.Exist = function(id) {
+        event.preventDefault();
+        var amenityId = id;
+        var productId = @ViewBag.id;
+
+        $.ajax({
+            url: `https://localhost:7195/api/Amenities/DoAmenityStatusTrue?productid=${productId}&amenityid=${amenityId}`,
+            type: "GET",
+            success: function() {
+                loadAmenities();
+            }
+        });
+    };
+
+
+    window.DontExist = function(id) {
+        event.preventDefault();
+        var amenityId = id;
+        var productId = @ViewBag.id;
+
+        $.ajax({
+            url: `https://localhost:7195/api/Amenities/DoAmenityStatusFalse?productid=${productId}&amenityid=${amenityId}`,
+            type: "GET",
+            success: function() {
+                loadAmenities(); 
+            }
+        });
+    };
+});
+</script>

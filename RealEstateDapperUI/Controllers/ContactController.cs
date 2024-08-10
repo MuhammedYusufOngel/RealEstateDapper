@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealEstateDapperUI.Dtos.ContactDtos;
 using System.Net.Http;
 
 namespace RealEstateDapperUI.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

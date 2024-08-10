@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RealEstateDapperUI.Controllers
 {
+    [Authorize]
     public class StatisticsController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

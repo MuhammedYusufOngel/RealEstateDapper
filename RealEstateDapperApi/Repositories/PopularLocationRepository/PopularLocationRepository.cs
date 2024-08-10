@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using RealEstateDapperApi.Dtos.BottomGridDtos;
 using RealEstateDapperApi.Dtos.PopularLocationDtos;
 using RealEstateDapperApi.Models.DapperContext;
 
@@ -14,7 +13,7 @@ namespace RealEstateDapperApi.Repositories.PopularLocationRepository
             _context = context;
         }
 
-        public async void CreatePopularLocation(CreatePopularLocationDto createPopularLocationDto)
+        public async Task CreatePopularLocation(CreatePopularLocationDto createPopularLocationDto)
         {
             string query = "insert into PopularLocation (Name, ImageUrl) values (@Name, @ImageUrl)";
             var parameters = new DynamicParameters();
@@ -26,7 +25,7 @@ namespace RealEstateDapperApi.Repositories.PopularLocationRepository
             }
         }
 
-        public async void DeletePopularLocation(int id)
+        public async Task DeletePopularLocation(int id)
         {
             string query = "Delete from PopularLocation where LocationId=@LocationId";
             var parameters = new DynamicParameters();
@@ -49,7 +48,7 @@ namespace RealEstateDapperApi.Repositories.PopularLocationRepository
             }
         }
 
-        public async Task<List<ResultPopularLocationDto>> GetPopularLocationAsync()
+        public async Task<List<ResultPopularLocationDto>> GetAllPopularLocations()
         {
             string query = "Select *from PopularLocation";
             using(var con = _context.CreateConnection())
@@ -59,7 +58,7 @@ namespace RealEstateDapperApi.Repositories.PopularLocationRepository
             }
         }
 
-        public async void UpdatePopularLocation(UpdatePopularLocationDto updatePopularLocationDto)
+        public async Task UpdatePopularLocation(UpdatePopularLocationDto updatePopularLocationDto)
         {
             string query = "Update PopularLocation set Name=@Name, ImageUrl=@ImageUrl where LocationId=@LocationId";
             var parameters = new DynamicParameters();

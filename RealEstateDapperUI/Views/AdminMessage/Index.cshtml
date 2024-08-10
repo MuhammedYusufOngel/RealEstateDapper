@@ -1,0 +1,26 @@
+﻿@using RealEstateDapperUI.Dtos.ContactDtos
+@model List<ResultContactDto>
+
+@{
+    ViewData["Title"] = "Gelen Mesajlar";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>Gelen Tüm Mesajlar</h1>
+
+@foreach(var item in Model)
+{
+    <div style="border: 1px solid black;">
+        <br />
+        <h6 class="title-small" style="margin: 10px;">@item.Name</h6>
+            <h3 class="title-big" style="margin: 10px;">@item.Subject</h3>
+        <p class="mt-4" style="margin: 10px;">@item.Email</p>
+
+        <p class="mt-3" style="margin: 10px;">@item.SendDate</p>
+        <p class="mt-3" style="margin: 10px;">@item.Message</p>
+
+        <br />
+    </div>
+    <br />
+    <br />
+}

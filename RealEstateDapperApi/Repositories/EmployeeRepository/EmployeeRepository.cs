@@ -14,7 +14,7 @@ namespace RealEstateDapperApi.Repositories.EmployeeRepository
             _context = context;
         }
 
-        public async void CreateEmployee(CreateEmployeeDto createEmployeeDto)
+        public async Task CreateEmployee(CreateEmployeeDto createEmployeeDto)
         {
             string query = "insert into Employee (Name, Title, Mail, PhoneNumber, ImageUrl, Status) values (@Name, @Title, @Mail, @PhoneNumber, @ImageUrl, @Status)";
             var parameters = new DynamicParameters();
@@ -30,7 +30,7 @@ namespace RealEstateDapperApi.Repositories.EmployeeRepository
             }
         }
 
-        public async void UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
+        public async Task UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
         {
             string query = "Update Employee set Name=@Name, Title=@Title, Mail=@Mail, PhoneNumber=@PhoneNumber, ImageUrl=@ImageUrl, Status=@Status where EmployeeId=@EmployeeId";
             var parameters = new DynamicParameters();
@@ -47,7 +47,7 @@ namespace RealEstateDapperApi.Repositories.EmployeeRepository
             }
         }
 
-        public async Task<List<ResultEmployeeDto>> GetAllEmployeeAsync()
+        public async Task<List<ResultEmployeeDto>> GetAllEmployees()
         {
             string query = "Select *from Employee";
             using (var con = _context.CreateConnection())
@@ -69,7 +69,7 @@ namespace RealEstateDapperApi.Repositories.EmployeeRepository
             }
         }
 
-        public async void DeleteEmployee(int id)
+        public async Task DeleteEmployee(int id)
         {
             string query = "Delete from Employee where EmployeeId=@EmployeeId";
             var parameters = new DynamicParameters();

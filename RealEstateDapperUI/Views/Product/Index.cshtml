@@ -7,46 +7,64 @@
 }
 
 <div class="bg-light rounded h-100 p-4">
-    <h1>Ürünler Sayfası</h1>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ürün Adı</th>
-                <th scope="col">Fiyat</th>
-                <th scope="col">Kategori</th>
-                <th scope="col">Yayınlanma Tarihi</th>
-                <th scope="col">Sil</th>
-                <th scope="col">Düzenle</th>
-                <th scope="col">Günün Fırsatı</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <h1>İlanlar Sayfası</h1>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th scope="row">@item.ProductId</th>
-                    <td>@item.Title</td>
-                    <td>@item.Price</td>
-                    <td>@item.CategoryName</td>
-                    <td>@item.Date.ToLongDateString()</td>
-                    <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/Category/DeleteCategory/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
-                    <td>
-                        @if(@item.DealOfTheDay == false)
-                        {
-                            <a href="/Product/GetActive/@item.ProductId" class="btn btn-outline-success">Aktif Yap</a>
-                        }
-                        @if(@item.DealOfTheDay == true)
-                        {
-                            <a href="/Product/GetPassive/@item.ProductId" class="btn btn-outline-danger">Pasif Yap</a>
-                        }
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">İlan Adı</th>
+                    <th scope="col">Yayınlanma Tarihi</th>
+                    <th scope="col">Sil</th>
+                    <th scope="col">Düzenle</th>
+                    <th scope="col">Sitede Gör</th>
+                    <th scope="col">İlan Durumu</th>
+                    <th scope="col">Günün Fırsatı</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.ProductId</th>
+                        <td>@item.Title</td>
+                        <td>@item.Date.ToShortDateString()</td>
+                        <td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                        <td><a href="/Product/UpdateProduct/@item.ProductId" class="btn btn-warning">Düzenle</a></td>
+                        <td><a href="/Property/PropertySingle/@item.ProductId" class="btn btn-primary">Sitede Gör</a></td>
+                        <td>
+                        @if (@item.Status == false)
+                        {
+                                <a href="/Product/GetActiveStatus/@item.ProductId" class="btn btn-success">Aktif Yap</a>
+                        }
+                        @if (@item.Status == true)
+                        {
+                                <a href="/Product/GetPassiveStatus/@item.ProductId" class="btn btn-danger">Pasif Yap</a>
+                        }
+                        </td>
+                        <td>
+                            @if(@item.DealOfTheDay == false)
+                            {
+                                <a href="/Product/GetActive/@item.ProductId" class="btn btn-outline-success">Aktif Yap</a>
+                            }
+                            @if(@item.DealOfTheDay == true)
+                            {
+                                <a href="/Product/GetPassive/@item.ProductId" class="btn btn-outline-danger">Pasif Yap</a>
+                            }
+                        </td>
+                    </tr>
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <br />
-<a href="/Product/CreateProduct" class="btn btn-primary">Yeni Ürün Ekle</a>
+
+<div class="table-responsive" style="display: justify-content; float: right;">
+    <a href="/Product/CreateProduct" class="btn btn-primary">Yeni İlan Ekle</a>
+    <a href="/Product/AddProductImage" class="btn btn-success">Resim Ekle</a>
+    <a href="/ProductDetail/Index" class="btn btn-outline-primary">İlanların Detayları</a>
+</div>
+<br />
+<br />

@@ -3,8 +3,8 @@
 <div class="locations py-5">
         <div class="container py-lg-5 py-md-4">
             <div class="heading text-center mx-auto">
-                <h6 class="title-small">Explore cities</h6>
-                <h3 class="title-big">Popular Locations</h3>
+                <h6 class="title-small">Şehirleri keşfedin</h6>
+                <h3 class="title-big">Popüler Yerler</h3>
             </div>
             <div class="row pt-5">
                 @foreach(var item in Model)
@@ -15,7 +15,7 @@
                             <img class="img-fluid" src="@item.ImageUrl" alt="">
                             <div class="box-content">
                                 <h3 class="title mb-1">@item.Name</h3>
-                                <span class="post">0 listings</span>
+                                <span class="post">@item.PropertyCount ilan</span>
 
                             </div>
                         </div>

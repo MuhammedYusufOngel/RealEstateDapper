@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using RealEstateDapperApi.Dtos.CategoryDtos;
 using RealEstateDapperApi.Dtos.ContactDtos;
 using RealEstateDapperApi.Models.DapperContext;
 
@@ -14,7 +13,7 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
             _context = context;
         }
 
-        public async void CreateContact(CreateContactDto createContactDto)
+        public async Task CreateContact(CreateContactDto createContactDto)
         {
             var query = "insert into Contacts (Name, Subject, Email, Message, SendDate) Values (@Name, @Subject, @Email, @Message, @SendDate)";
             var parameters = new DynamicParameters();
@@ -29,7 +28,7 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
             }
         }
 
-        public async void DeleteContact(int id)
+        public async Task DeleteContact(int id)
         {
             string query = "Delete from Contact where ContactId=@ContactId";
             var parameters = new DynamicParameters();
@@ -40,7 +39,7 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
             }
         }
 
-        public async Task<List<ResultContactDto>> GetAllContactsAsync()
+        public async Task<List<ResultContactDto>> GetAllContacts()
         {
             var query = "Select *from Contacts";
             using (var con = _context.CreateConnection())
@@ -62,7 +61,7 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
             }
         }
 
-        public async Task<List<ResultContactDto>> GetLast4ContactsAsync()
+        public async Task<List<ResultContactDto>> GetLast4Contacts()
         {
             var query = "Select Top(4) *from Contacts order by ContactId desc";
             using (var con = _context.CreateConnection())
@@ -72,7 +71,7 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
             }
         }
 
-        public async void UpdateContact(UpdateContactDto updateContactDto)
+        public async Task UpdateContact(UpdateContactDto updateContactDto)
         {
             string query = "Update Contacts set Name=@Name, Subject=@Subject, Email=@Email, Message=@Message, SendDate=@SendDate where ContactId=@ContactId";
             var parameters = new DynamicParameters();

@@ -15,7 +15,7 @@ namespace RealEstateDapperUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7195/api/AboutDetail");
+            var response = await client.GetAsync("https://localhost:7195/api/AboutDetails");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
@@ -38,7 +38,7 @@ namespace RealEstateDapperUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createAboutDetailDto);
             StringContent content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7195/api/AboutDetail", content);
+            var responseMessage = await client.PostAsync("https://localhost:7195/api/AboutDetails", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -49,7 +49,7 @@ namespace RealEstateDapperUI.Controllers
         public async Task<IActionResult> DeleteAboutDetail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7195/api/AboutDetail/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7195/api/AboutDetails/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -62,7 +62,7 @@ namespace RealEstateDapperUI.Controllers
         public async Task<IActionResult> UpdateAboutDetail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7195/api/AboutDetail/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7195/api/AboutDetails/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -78,7 +78,7 @@ namespace RealEstateDapperUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateAboutDetailDto);
             StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7195/api/AboutDetail/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7195/api/AboutDetails/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

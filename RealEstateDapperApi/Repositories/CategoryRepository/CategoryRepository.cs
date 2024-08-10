@@ -13,15 +13,8 @@ namespace RealEstateDapperApi.Repositories.CategoryRepository
             _context = context;
         }
 
-        public async void CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            //I dont know why but these codes don't work
-            //string query = "insert into Category (CategoryName, CategoryStatus) values (" + createCategoryDto.CategoryName + "), (" + true + ")";
-            //using(var connection = _context.CreateConnection())
-            //{
-            //    await connection.ExecuteAsync(query);
-            //}
-
             string query = "insert into Category (CategoryName, CategoryStatus) values (@categoryName, @categoryStatus)";
             var parameters = new DynamicParameters();
             parameters.Add("@categoryName", createCategoryDto.CategoryName);
@@ -32,7 +25,7 @@ namespace RealEstateDapperApi.Repositories.CategoryRepository
             }
         }
 
-        public async void DeleteCategory(int id)
+        public async Task DeleteCategory(int id)
         {
             string query = "Delete from Category where CategoryId=@categoryId";
             var parameters = new DynamicParameters();
@@ -43,7 +36,7 @@ namespace RealEstateDapperApi.Repositories.CategoryRepository
             }
         }
 
-        public async Task<List<ResultCategoryDto>> GetAllCategoryAsync()
+        public async Task<List<ResultCategoryDto>> GetAllCategories()
         {
             string query = "Select* from Category";
             using(var con = _context.CreateConnection())
@@ -65,7 +58,7 @@ namespace RealEstateDapperApi.Repositories.CategoryRepository
             }
         }
 
-        public async void UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        public async Task UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
             string query = "Update Category set CategoryName=@categoryName, CategoryStatus=@categoryStatus where CategoryId=@categoryId";
             var parameters = new DynamicParameters();

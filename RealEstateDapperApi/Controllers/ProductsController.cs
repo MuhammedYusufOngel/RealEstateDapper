@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RealEstateDapperApi.Dtos.ProductDtos;
-using RealEstateDapperApi.Repositories.CategoryRepository;
 using RealEstateDapperApi.Repositories.ProductRepository;
 
 namespace RealEstateDapperApi.Controllers
@@ -27,21 +25,56 @@ namespace RealEstateDapperApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
-            _productRepository.CreateProduct(createProductDto);
-            return Ok("Kategori başarılı şekilde eklendi");
+            await _productRepository.CreateProduct(createProductDto);
+            return Ok("👍");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            await _productRepository.DeleteProduct(id);
+            return Ok("👍");
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
+        {
+            await _productRepository.UpdateProduct(updateProductDto);
+            return Ok("👍");
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdProduct(int id)
+        {
+            var values = await _productRepository.GetByIdProduct(id);
+            return Ok(values);
         }
 
         [HttpGet("ProductDealOfTheDayChangeToTrue/{id}")]
         public async Task<IActionResult> ProductDealOfTheDayChangeToTrue(int id)
         {
-            _productRepository.ProductDealOfTheDayStatusChangeToTrue(id);
+            await _productRepository.ProductDealOfTheDayStatusChangeToTrue(id);
             return Ok("👍");
         }
 
         [HttpGet("ProductDealOfTheDayChangeToFalse/{id}")]
         public async Task<IActionResult> ProductDealOfTheDayChangeToFalse(int id)
         {
-            _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
+            await _productRepository.ProductDealOfTheDayStatusChangeToFalse(id);
+            return Ok("👍");
+        }
+
+        [HttpGet("ProductStatusChangeToTrue/{id}")]
+        public async Task<IActionResult> ProductStatusChangeToTrue(int id)
+        {
+            await _productRepository.ProductStatusChangeToTrue(id);
+            return Ok("👍");
+        }
+
+        [HttpGet("ProductStatusChangeToFalse/{id}")]
+        public async Task<IActionResult> ProductStatusChangeToFalse(int id)
+        {
+            await _productRepository.ProductStatusChangeToFalse(id);
             return Ok("👍");
         }
 
@@ -59,11 +92,53 @@ namespace RealEstateDapperApi.Controllers
             return Ok(values);
         }
 
-        [HttpGet("ProductAdvertsListByEmployeeId")]
-        public async Task<IActionResult> ProductAdvertsListByEmployeeId(int id)
+        [HttpGet("ProductAdvertsListByEmployeeIdTrue")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeIdTrue(int id)
         {
-            var values = await _productRepository.GetByEmployeeIdProductsAsync(id);
+            var values = await _productRepository.GetByEmployeeIdProductsTrueAsync(id);
             return Ok(values);
+        }
+
+        [HttpGet("ProductAdvertsListByEmployeeIdFalse")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeIdFalse(int id)
+        {
+            var values = await _productRepository.GetByEmployeeIdProductsFalseAsync(id);
+            return Ok(values);
+        }
+
+        [HttpGet("GetResultProductWithSearch")]
+        public async Task<IActionResult> GetResultProductWithSearch(string searchKeyValue, int categoryId, string city)
+        {
+            var values = await _productRepository.GetResultProductWithSearch(searchKeyValue, categoryId, city);
+            return Ok(values);
+        }
+
+        [HttpGet("GetResultProductWithSearchWithoutSearch")]
+        public async Task<IActionResult> GetResultProductWithSearchWithoutSearch(int categoryId, string city)
+        {
+            var values = await _productRepository.GetResultProductWithSearch(categoryId, city);
+            return Ok(values);
+        }
+
+        [HttpGet("GetProductByDealOfTheDayTrueWithCategory")]
+        public async Task<IActionResult> GetProductByDealOfTheDayTrueWithCategory()
+        {
+            var values = await _productRepository.GetProductByDealOfTheDayTrueWithCategoryAsync();
+            return Ok(values);
+        }
+
+        [HttpGet("GetLast3Product")]
+        public async Task<IActionResult> GetLast3Product()
+        {
+            var values = await _productRepository.GetLast3ProductAsync();
+            return Ok(values);
+        }
+
+        [HttpGet("GetLastProduct")]
+        public async Task<IActionResult> GetLastProduct()
+        {
+            var value = await _productRepository.GetLastProduct();
+            return Ok(value);
         }
     }
 }

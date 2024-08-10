@@ -2,6 +2,7 @@
 {
     public class CreateProductDto
     {
+        public int ProductId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string CoverImage { get; set; }

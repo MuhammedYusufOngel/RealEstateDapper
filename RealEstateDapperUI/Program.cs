@@ -4,6 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("ApiSettingsKey"));
+
+//builder.Services.AddScoped<AppSettings>();
+
 // Add services to the container.
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 builder.Services.AddControllersWithViews();
@@ -33,6 +37,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -41,16 +46,17 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Employee}/{action=Index}/{id?}");
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
       name: "areas",
-      pattern: "{area:exists}/{controller=MyAdverts}/{action=Index}/{id?}"
+      pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
     );
 });
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Default}/{action=Index}/{id?}");
+
 
 app.Run();

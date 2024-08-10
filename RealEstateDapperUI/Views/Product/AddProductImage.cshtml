@@ -1,0 +1,22 @@
+﻿@model RealEstateDapperUI.Dtos.ProductImageDtos.CreateProductImageDto
+
+@{
+    ViewData["Title"] = "AddProductImage";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label for="ImageUrl" class="form-label">Resim Url</label>
+        <input type="text" class="form-control" asp-for="ImageUrl"
+            aria-describedby="ImageUrl">
+    </div>
+
+    <div class="mb-3">
+        <label for="EmployeeId" class="form-label">Eklemek İstediğiniz İlan</label>
+        @Html.DropDownListFor(x => x.ProductId, (List<SelectListItem>)ViewBag.p, new {@class="form-control"})
+    </div>
+
+    <button class="btn btn-primary">Resmi Kaydet</button>
+</form>
+

@@ -16,7 +16,7 @@ namespace RealEstateDapperUI.ViewComponents.EstateAgent
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7195/api/EstateAgentChart/Get5CityForChart");
+            var response = await client.GetAsync("https://localhost:7195/api/EstateAgentCharts/Get5CityForChart");
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();

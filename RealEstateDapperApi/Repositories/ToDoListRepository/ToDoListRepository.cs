@@ -13,7 +13,7 @@ namespace RealEstateDapperApi.Repositories.ToDoListRepository
             _context = context;
         }
 
-        public async void CreateToDo(CreateToDoListDto createToDoListDto)
+        public async Task CreateToDo(CreateToDoListDto createToDoListDto)
         {
             string query = "insert into ToDoList (Description, Status) values (@Description, @Status)";
             var parameters = new DynamicParameters();
@@ -25,7 +25,7 @@ namespace RealEstateDapperApi.Repositories.ToDoListRepository
             }
         }
 
-        public async void DeleteToDo(int id)
+        public async Task DeleteToDo(int id)
         {
             string query = "Delete from ToDoList where ToDoListId=@ToDoListId";
             var parameters = new DynamicParameters();
@@ -46,13 +46,22 @@ namespace RealEstateDapperApi.Repositories.ToDoListRepository
             }
         }
 
-        public async void UpdateToDo(UpdateToDoListDto updateToDoListDto)
+        public async Task UpdateToDoStatusTrue(int id)
         {
-            string query = "Update ToDoList set Description=@Description, Status=@Status where ToDoListId=@ToDoListId";
+            string query = "Update ToDoList set Status=1 where ToDoListId=@ToDoListId";
             var parameters = new DynamicParameters();
-            parameters.Add("@ToDoListId", updateToDoListDto.ToDoListId);
-            parameters.Add("@Description", updateToDoListDto.Description);
-            parameters.Add("@Status", updateToDoListDto.Status);
+            parameters.Add("@ToDoListId", id);
+            using (var con = _context.CreateConnection())
+            {
+                await con.ExecuteAsync(query, parameters);
+            }
+        }
+
+        public async Task UpdateToDoStatusFalse(int id)
+        {
+            string query = "Update ToDoList set Status=0 where ToDoListId=@ToDoListId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@ToDoListId", id);
             using (var con = _context.CreateConnection())
             {
                 await con.ExecuteAsync(query, parameters);

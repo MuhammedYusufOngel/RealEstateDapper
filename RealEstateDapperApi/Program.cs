@@ -1,40 +1,12 @@
-using RealEstateDapperApi.Models.DapperContext;
-using RealEstateDapperApi.Repositories.AboutDetailRepository;
-using RealEstateDapperApi.Repositories.BottomGridRepository;
-using RealEstateDapperApi.Repositories.CategoryRepository;
-using RealEstateDapperApi.Repositories.ContactRepository;
-using RealEstateDapperApi.Repositories.EmployeeRepository;
-using RealEstateDapperApi.Repositories.EstateAgentRepository.DashboardRepository.ChartRepository;
-using RealEstateDapperApi.Repositories.EstateAgentRepository.DashboardRepository.StatisticRepository;
-using RealEstateDapperApi.Repositories.PopularLocationRepository;
-using RealEstateDapperApi.Repositories.ProductRepository;
-using RealEstateDapperApi.Repositories.ServiceRepository;
-using RealEstateDapperApi.Repositories.StatisticsRepository;
-using RealEstateDapperApi.Repositories.TestimonalRepository;
-using RealEstateDapperApi.Repositories.ToDoListRepository;
+using RealEstateDapperApi.Containers;
 using RealEstateDapperUI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
-builder.Services.AddTransient<Context>();
-builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IAboutDetailRepository, AboutDetailRepository>();
-builder.Services.AddTransient<IServiceRepository, ServiceRepository>();
-builder.Services.AddTransient<IBottomGridRepository, BottomGridRepository>();
-builder.Services.AddTransient<IPopularLocationRepository, PopularLocationRepository>();
-builder.Services.AddTransient<ITestimonalRepository, TestimonalRepository>();
-builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
-builder.Services.AddTransient<IContactRepository, ContactRepository>();
-builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
-builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
-builder.Services.AddTransient<IChartRepository, ChartRepository>();
-
+builder.Services.ContainerDependencies();
 
 /////////////////////////////////////////
 builder.Services.AddCors(opt =>

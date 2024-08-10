@@ -1,0 +1,66 @@
+﻿@model RealEstateDapperUI.Dtos.ProductDetailDtos.UpdateProductDetailDto
+
+@{
+    ViewData["Title"] = "UpdateProductDetail";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h1>İlan Detayları Güncelleme Sayfası</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="ProductDetailId" class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="ProductDetailId"
+            aria-describedby="ProductDetailId" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="Size" class="form-label">Genişlik</label>
+        <input type="text" class="form-control" asp-for="Size"
+            aria-describedby="Size">
+    </div>
+
+    <div class="mb-3">
+        <label for="BedroomCount" class="form-label">Yatak Odası Sayısı</label>
+        <input type="text" class="form-control" asp-for="BedroomCount"
+            aria-describedby="BedroomCount">
+    </div>
+
+    <div class="mb-3">
+        <label for="BathCount" class="form-label">Banyo Sayısı</label>
+        <input type="text" class="form-control" asp-for="BathCount"
+            aria-describedby="BathCount">
+    </div>
+
+    <div class="mb-3">
+        <label for="RoomCount" class="form-label">Oda Sayısı</label>
+        <input type="text" class="form-control" asp-for="RoomCount"
+            aria-describedby="RoomCount">
+    </div>
+
+    <div class="mb-3">
+        <label for="GarageSize" class="form-label">Garaj Sayısı</label>
+        <input type="text" class="form-control" asp-for="GarageSize"
+            aria-describedby="GarageSize">
+    </div>
+
+    <div class="mb-3">
+        <label for="BuildYear" class="form-label">Binanın İnşa Yılı</label>
+        <input type="text" class="form-control" asp-for="BuildYear"
+            aria-describedby="BuildYear">
+    </div>
+
+    <div class="mb-3">
+        <label for="Location" class="form-label">Yer (Google Maps'ten gösteriniz)</label>
+        <input type="text" class="form-control" asp-for="Location"
+            aria-describedby="Location">
+    </div>
+
+    <div class="mb-3">
+        <label for="VideoUrl" class="form-label">Video Url</label>
+        <input type="text" class="form-control" asp-for="VideoUrl"
+            aria-describedby="VideoUrl">
+    </div>
+    <button class="btn btn-primary">İlanı Kaydet</button>
+</form>
+

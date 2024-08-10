@@ -1,12 +1,47 @@
-﻿
+﻿@using RealEstateDapperUI.Dtos.CategoryDtos
+@model List<ResultCategoryDto>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
-
-    <section class="w3l-cover-3">
-        @await Component.InvokeAsync("_DefaultFeatureComponentPartial")
-    </section>
+<section class="w3l-cover-3">
+    <div class="cover top-bottom">
+	    <div class="container">
+		    <div class="middle-section text-center">
+			    <div class="section-width">
+				    <p>Evde olmak ne kadar güzel, değil mi?</p>
+				    <h2>Aradığınız evi hemen bulun</h2>
+                    <br />
+                    <br />
+				    <form asp-action="PartialSearch" asp-controller="Default" class="w3l-cover-3-gd" method="post">
+					    <input type="search" name="searchKeyValue" placeholder="Anahtar kelime...">
+					    <span class="input-group-btn">
+						    <select class="btn btn-default" name="categoryId" required>
+							    @foreach(var item in ViewBag.v)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+						    </select>
+					    </span>
+					    <span class="input-group-btn">
+                            <select class="btn btn-default" name="City" required>
+                                @foreach (var item in ViewBag.c)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+						    </select>
+					    </span>
+					    <button type="submit" class="btn-primary">Ara</button>
+				    </form>
+			    </div>
+			    <section id="bottom" class="demo">
+				    <a href="#bottom"><span></span>Kaydır</a>
+			    </section>
+		    </div>
+	    </div>
+    </div>
+</section>
 
     <section class="locations-1" id="locations">
             @await Component.InvokeAsync("_DefaultHomePageProductList")
@@ -43,10 +78,6 @@
 
     <section class="w3l-index3" id="about">
         @await Component.InvokeAsync("_DefaultOurClientsComponentPartial")
-    </section>
-
-    <section class="w3l-bottom-grids py-5" id="steps">
-        @await Component.InvokeAsync("_DefaultSubFeatureComponentPartial")
     </section>
 
     <div class="w3l-news" id="news">

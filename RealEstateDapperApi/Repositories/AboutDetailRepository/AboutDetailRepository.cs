@@ -14,7 +14,7 @@ namespace RealEstateDapperApi.Repositories.AboutDetailRepository
             _context = context;
         }
 
-        public async void CreateAboutDetail(CreateAboutDetailDto createAboutDetailDto)
+        public async Task CreateAboutDetail(CreateAboutDetailDto createAboutDetailDto)
         {
             string query = "insert into AboutDetail (Title, Subtitle, Description1, Description2) values (@Title, @Subtitle, @Description1, @Description2)";
             var parameters = new DynamicParameters();
@@ -28,7 +28,7 @@ namespace RealEstateDapperApi.Repositories.AboutDetailRepository
             }
         }
 
-        public async void DeleteAboutDetail(int id)
+        public async Task DeleteAboutDetail(int id)
         {
             string query = "Delete from AboutDetail where AboutId=@AboutId";
             var parameters = new DynamicParameters();
@@ -51,7 +51,7 @@ namespace RealEstateDapperApi.Repositories.AboutDetailRepository
             }
         }
 
-        public async Task<List<ResultAboutDetailDto>> GetAllAboutDetailAsync()
+        public async Task<List<ResultAboutDetailDto>> GetAllAboutDetail()
         {
             var query = "Select *from AboutDetail";
             using(var con = _context.CreateConnection())
@@ -61,7 +61,7 @@ namespace RealEstateDapperApi.Repositories.AboutDetailRepository
             }
         }
 
-        public async void UpdateAboutDetail(UpdateAboutDetailDto updateAboutDetailDto)
+        public async Task UpdateAboutDetail(UpdateAboutDetailDto updateAboutDetailDto)
         {
             string query = "Update AboutDetail set Title=@Title, Subtitle=@Subtitle, Description1=@Description1, Description2=@Description2 where AboutId=@AboutId";
             var parameters = new DynamicParameters();

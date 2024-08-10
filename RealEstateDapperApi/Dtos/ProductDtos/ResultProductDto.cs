@@ -13,5 +13,6 @@
         public string ProductCategory { get; set; }
         public string Type { get; set; }
         public bool DealOfTheDay { get; set; }
+        public bool Status { get; set; }
     }
 }

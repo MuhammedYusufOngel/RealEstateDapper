@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RealEstateDapperUI.Dtos.CategoryDtos;
 
 namespace RealEstateDapperUI.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

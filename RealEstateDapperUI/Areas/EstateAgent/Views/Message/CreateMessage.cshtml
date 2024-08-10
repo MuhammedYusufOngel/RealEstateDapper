@@ -1,0 +1,31 @@
+﻿@using RealEstateDapperUI.Dtos.MessageDtos
+@model CreateMessageDto
+@{
+    ViewData["Title"] = "CreateMessage";
+    Layout = "~/Areas/EstateAgent/Views/LayoutEstateAgent/Index.cshtml";
+}
+
+
+<h1>Yeni Mesaj</h1>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label for="ReceiverId" class="form-label">Gönderilen Kullanıcı</label>
+        @Html.DropDownListFor(x => x.ReceiverId, (List<SelectListItem>)ViewBag.e, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Subject" class="form-label">Konu</label>
+        @Html.TextBoxFor(x => x.Subject, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Detail" class="form-label">Açıklama</label>
+        @Html.TextAreaFor(x => x.Detail, 20, 20, new {@class="form-control"})
+    </div>
+
+    <button type="submit" class="btn btn-primary">Mesajı Kaydet</button>
+</form>
+
+

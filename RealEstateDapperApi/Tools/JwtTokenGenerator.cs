@@ -18,7 +18,9 @@ namespace RealEstateDapperApi.Tools
             claims.Add(new Claim(ClaimTypes.NameIdentifier, model.Id.ToString()));
 
             if (!string.IsNullOrWhiteSpace(model.Username))
+            {
                 claims.Add(new Claim("Username", model.Username));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key));
             var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -26,8 +28,11 @@ namespace RealEstateDapperApi.Tools
 
             JwtSecurityToken token = new JwtSecurityToken(issuer: JwtTokenDefaults.ValidIssuer, audience: JwtTokenDefaults.ValidAudience, claims:claims, notBefore:DateTime.UtcNow, expires: expireDate, signingCredentials: signinCredentials);
 
+            string tokenHeader = token.EncodedHeader;
+            string tokenPayLoad = token.EncodedPayload;
+
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            return new TokenResponseViewModel(tokenHandler.WriteToken(token), expireDate);
+            return new TokenResponseViewModel(tokenHandler.WriteToken(token), expireDate, model.Role);
         }
     }
 }

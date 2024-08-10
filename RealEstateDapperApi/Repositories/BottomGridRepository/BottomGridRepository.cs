@@ -15,7 +15,7 @@ namespace RealEstateDapperApi.Repositories.BottomGridRepository
             _context = context;
         }
 
-        public async void CreateBottomGrid(CreateBottomGridDto createBottomGridDto)
+        public async Task CreateBottomGrid(CreateBottomGridDto createBottomGridDto)
         {
             string query = "insert into BottomGrid (Icon, Title, Description) values (@Icon, @Title, @Description)";
             var parameters = new DynamicParameters();
@@ -28,7 +28,7 @@ namespace RealEstateDapperApi.Repositories.BottomGridRepository
             }
         }
 
-        public async void DeleteBottomGrid(int id)
+        public async Task DeleteBottomGrid(int id)
         {
             string query = "Delete from BottomGrid where BottomGridId=@BottomGridId";
             var parameters = new DynamicParameters();
@@ -39,7 +39,7 @@ namespace RealEstateDapperApi.Repositories.BottomGridRepository
             }
         }
 
-        public async Task<List<ResultBottomGridDto>> GetAllBottomGridAsync()
+        public async Task<List<ResultBottomGridDto>> GetAllBottomGrid()
         {
             string query = "Select *from BottomGrid";
             using(var con = _context.CreateConnection())
@@ -61,7 +61,7 @@ namespace RealEstateDapperApi.Repositories.BottomGridRepository
             }
         }
 
-        public async void UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto)
+        public async Task UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto)
         {
             string query = "Update BottomGrid set Icon=@Icon, Title=@Title, Description=@Description where BottomGridId=@BottomGridId";
             var parameters = new DynamicParameters();

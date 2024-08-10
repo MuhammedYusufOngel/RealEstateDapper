@@ -1,0 +1,58 @@
+﻿@model RealEstateDapperUI.Dtos.ProductDtos.CreateProductDto
+
+@{
+    ViewData["Title"] = "CreateAdvert";
+    Layout = "~/Areas/EstateAgent/Views/LayoutEstateAgent/Index.cshtml";
+}
+
+<h1>Yeni İlan Ekleme</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Title" class="form-label">Ürün Başlığı</label>
+        @Html.TextBoxFor(x => x.Title, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Price" class="form-label">Ürünün Fiyatı</label>
+        @Html.TextBoxFor(x => x.Price, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="CoverImage" class="form-label">Ürünün Görüntüsü</label>
+        @Html.TextBoxFor(x => x.CoverImage, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="City" class="form-label">Bulunduğu Şehir</label>
+        @Html.TextBoxFor(x => x.City, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="District" class="form-label">Bulunduğu Muhit</label>
+        @Html.TextBoxFor(x => x.District, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Address" class="form-label">Adresi</label>
+        @Html.TextBoxFor(x => x.Address, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        @Html.TextBoxFor(x => x.Description, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="Type" class="form-label">Tipi</label>
+        @Html.DropDownListFor(x => x.Type, (List<SelectListItem>)ViewBag.type, new {@class="form-control"})
+    </div>
+
+    <div class="mb-3">
+        <label for="ProductCategory" class="form-label">Kategori</label>
+        @Html.DropDownListFor(x => x.ProductCategory, (List<SelectListItem>)ViewBag.v, new {@class="form-control"})
+    </div>
+
+    <button type="submit" class="btn btn-primary">İlanı Kaydet</button>
+</form>
+

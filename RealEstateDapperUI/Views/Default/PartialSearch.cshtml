@@ -1,0 +1,51 @@
+﻿
+
+<div class="cover top-bottom">
+	<div class="container">
+		<div class="middle-section text-center">
+			<div class="section-width">
+				<p>It's great to be home!</p>
+				<h2>Find a property today</h2>
+				<div class="most-searches">
+					<h4>En Çok Arananlar</h4>
+					<ul>
+						<li><a href="#link">Villa</a></li>
+						<li><a href="#link">Apartmans</a></li>
+						<li><a href="#link">Private house</a></li>
+					</ul>
+				</div>
+				<form asp-action="PartialSearch" asp-controller="Default" class="w3l-cover-3-gd" method="post">
+					<input type="search" name="searchKeyValue" placeholder="Anahtar kelime..." required>
+					<span class="input-group-btn">
+						<select class="btn btn-default" name="ext" required>
+							<option selected="">Kategori Seçin</option>
+							<option>Villa</option>
+							<option>Apartment</option>
+							<option>Private house</option>
+							<option>Building</option>
+							<option>Shop</option>
+							<option>Social housing</option>
+							<option>Town house</option>
+						</select>
+					</span>
+					<span class="input-group-btn">
+						<select class="btn btn-default" name="ext" required>
+							<option selected="">Şehir Seçin</option>
+							<option>Australia</option>
+							<option>London</option>
+							<option>India</option>
+							<option>Bangladesh</option>
+							<option>Saudi Arabia</option>
+							<option>America</option>
+							<option>Srilanka</option>
+						</select>
+					</span>
+					<button type="submit" class="btn-primary">Search</button>
+				</form>
+			</div>
+			<section id="bottom" class="demo">
+				<a href="#bottom"><span></span>Scroll</a>
+			</section>
+		</div>
+	</div>
+</div>

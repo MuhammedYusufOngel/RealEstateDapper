@@ -4,11 +4,11 @@ namespace RealEstateDapperApi.Repositories.ContactRepository
 {
     public interface IContactRepository
     {
-        Task<List<ResultContactDto>> GetAllContactsAsync();
-        Task<List<ResultContactDto>> GetLast4ContactsAsync();
-        void CreateContact(CreateContactDto createContactDto);
-        void DeleteContact(int id);
-        void UpdateContact(UpdateContactDto updateContactDto);
+        Task<List<ResultContactDto>> GetAllContacts();
+        Task<List<ResultContactDto>> GetLast4Contacts();
+        Task CreateContact(CreateContactDto createContactDto);
+        Task DeleteContact(int id);
+        Task UpdateContact(UpdateContactDto updateContactDto);
         Task<GetByIdContactDto> GetContact(int id);
     }
 }

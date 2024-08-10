@@ -1,7 +1,7 @@
 ﻿<header id="site-header" class="fixed-top">
   <div class="container">
       <nav class="navbar navbar-expand-lg stroke px-0">
-          <h1> <a class="navbar-brand" href="index.html">
+          <h1> <a class="navbar-brand" href="/Default/Index">
                   <span class="fa fa-home"></span> Estate sale
               </a></h1>
           <!-- if logo is image enable this   
@@ -18,46 +18,21 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav ml-lg-5 mr-auto">
                   <li class="nav-item @@home__active">
-                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="/Default/Index">Ana sayfa</a>
                   </li>
                   <li class="nav-item @@listing__active">
-                      <a class="nav-link" href="listing.html">Listing</a>
+                      <a class="nav-link" href="/Property/Index/">İlanlar</a>
                   </li>
-                  <li class="nav-item dropdown @@property__active">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Property <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item @@ps__active" href="property-single.html">Single property</a>
-                      </div>
+                  <li class="nav-item @@listing__active">
+                      <a class="nav-link" href="/Contact/Index/">İletişime Geçin</a>
                   </li>
-                  <li class="nav-item dropdown active">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Pages <span class="fa fa-angle-down"></span>
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item @@about__active" href="about.html">About us</a>
-                          <a class="dropdown-item active" href="/Contact/Index">Contact us</a>
-                      </div>
+                  <li class="nav-item @@listing__active">
+                      <a class="nav-link" href="/Login/Index/">Giriş Yap</a>
                   </li>
               </ul>
               <div class="top-quote mt-lg-0">
-                  <a href="#buytheme" class="btn btn-style btn-primary"><span class="fa fa-home"></span> Add
-                      listiing</a>
+                  <a href="/Product/CreateProduct" class="btn btn-style btn-primary"><span class="fa fa-home"></span> İlan ekleyin</a>
               </div>
-              <!--/search-right-->
-              <div class="search mx-3">
-                  <input class="search_box" type="checkbox" id="search_box">
-                  <label class="fa fa-search" for="search_box"></label>
-                  <div class="search_form">
-                      <form action="error.html" method="GET">
-                          <input type="text" placeholder="Search"><input type="submit" value="search">
-                      </form>
-                  </div>
-              </div>
-              <!--//search-right-->
           </div>
 
           <!-- toggle switch for light and dark theme -->

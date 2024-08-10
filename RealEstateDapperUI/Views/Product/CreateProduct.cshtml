@@ -5,7 +5,7 @@
     Layout = "~/Views/Admin/Index.cshtml";
 }
 
-<h1>Yeni Ürün Ekleme</h1>
+<h1>Yeni İlan Ekleme</h1>
 
 <form method="post">
     <div class="mb-3">
@@ -35,7 +35,7 @@
     <div class="mb-3">
         <label for="District" class="form-label">Bulunduğu Muhit</label>
         <input type="text" class="form-control" asp-for="District"
-            aria-describedby="Title">
+            aria-describedby="District">
     </div>
 
     <div class="mb-3">
@@ -65,7 +65,5 @@
         <label for="EmployeeId" class="form-label">Çalışan</label>
         @Html.DropDownListFor(x => x.EmployeeId, (List<SelectListItem>)ViewBag.e, new {@class="form-control"})
     </div>
-    <button class="btn btn-primary">Ürünü Kaydet</button>
+    <button class="btn btn-primary">İlanı Kaydet</button>
 </form>
-
-

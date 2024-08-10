@@ -2,6 +2,7 @@
 {
     public class UpdateProductDto
     {
+        public int ProductId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string CoverImage { get; set; }
@@ -12,6 +13,5 @@
         public string Type { get; set; }
         public int ProductCategory { get; set; }
         public int EmployeeId { get; set; }
-        public bool DealOfTheDay { get; set; }
     }
 }

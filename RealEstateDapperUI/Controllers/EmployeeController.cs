@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Protocol;
 using RealEstateDapperUI.Dtos.EmployeeDtos;
 using RealEstateDapperUI.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text.Json;
 
 namespace RealEstateDapperUI.Controllers
 {
@@ -79,7 +83,8 @@ namespace RealEstateDapperUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateEmployeeDto>(jsonData);
-                return View(values);
+                ViewBag.image = values.ImageUrl;
+                ViewBag.Name = values.Name;
             }
             return View();
         }
