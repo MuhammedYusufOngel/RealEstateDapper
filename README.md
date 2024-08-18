@@ -1,6 +1,6 @@
-#Emlakçı Web Sitesi
-M
-#Kullandığım Teknolojiler  
+# Emlakçı Web Sitesi  
+  
+## Kullandığım Teknolojiler  
 - ASP.Net Core 6.0
 - MSSQL
 - Dapper
@@ -13,19 +13,19 @@ M
 - Javascript
 - Bootstrap
 
-#Front End
+## Front End
 - Html
 - Css
 - Javascript
 - Bootstrap
 
-#Back End  
+## Back End  
 - C#
 - MSSQL
 - Swagger
 
 
-#Öne Çıkan Özellikler
+## Öne Çıkan Özellikler
 - Dilediğin evi filtreleme özelliği
 - Kolay emlak ilanı
 - Emlakçılarla mesajlaşma imkanı
@@ -34,10 +34,10 @@ M
 - Emlak İstatistikleri
 - MSSQL İlişkili Tablolar
 
-  #Teknik Özellikler
-  - ASP.Net Core 6.0
-  - MSSQL Veri Tabanı
-  - ASP.Net Core Web API
-  - Dapper
-  - SignalR
-  - Ajax
+## Teknik Özellikler
+- ASP.Net Core 6.0
+- MSSQL Veri Tabanı
+- ASP.Net Core Web API
+- Dapper
+- SignalR
+- Ajax
